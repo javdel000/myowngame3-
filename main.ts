@@ -46,6 +46,9 @@ scene.onOverlapTile(SpriteKind.Player, img`
 sprites.onOverlap(SpriteKind.Player, SpriteKind.aaa, function (sprite, otherSprite) {
     game.over(true)
 })
+function life () {
+    info.setLife(1)
+}
 function hero2 () {
     hero = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -140,7 +143,7 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
-`, false)
+`, true)
 }
 function camera () {
     scene.cameraFollowSprite(hero)
@@ -166,7 +169,7 @@ scene.onOverlapTile(SpriteKind.Player, img`
     game.over(false)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
-    game.over(false)
+    info.changeLifeBy(-1)
 })
 function prize () {
     Prize = sprites.create(img`
@@ -258,6 +261,9 @@ function villian1 () {
 `, SpriteKind.Enemy)
     villian.setPosition(620, 110)
 }
+info.onLifeZero(function () {
+    game.over(false)
+})
 let projectile: Sprite = null
 let villian: Sprite = null
 let Prize: Sprite = null
@@ -268,6 +274,7 @@ background()
 villian1()
 countdown()
 prize()
+life()
 forever(function () {
     projectile = sprites.createProjectileFromSprite(img`
 . . . . . . . . . . . . . . . . 
