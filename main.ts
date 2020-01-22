@@ -2,6 +2,47 @@ namespace SpriteKind {
     export const aaa = SpriteKind.create()
     export const Key = SpriteKind.create()
 }
+namespace myTiles {
+    //% blockIdentity=images._tile
+    export const tile0 = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+}
+scene.onOverlapTile(SpriteKind.Player, img`
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+`, function (sprite, location) {
+    game.over(false)
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.aaa, function (sprite, otherSprite) {
     game.over(true)
 })
@@ -45,13 +86,13 @@ function hero2 () {
     hero.setPosition(272, 495)
 }
 function countdown () {
-    info.startCountdown(250)
+    info.startCountdown(100)
 }
 function background () {
     scene.setTileMap(img`
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
-f 2 2 b b b b b f c c c c b c b c f f f 6 6 6 6 b b b f e e b f 
-f 2 2 f f f f f f f f f f f f f b f f f 5 f f f b f b f f f b f 
+f c 2 b b b b b f c c c c b c b c f f f 6 6 6 6 b b b f e e b f 
+f 2 c f f f f f f f f f f f f f b f f f 5 f f f b f b f f f b f 
 f f f f c c c b b c c c e c c c c f f 8 a 5 4 4 b b b b f f b f 
 f b b b b f f f f f f f f f f f f f f f 5 f f f b f b f f b b f 
 f b f f b b b b b b b c c c c c c f f f 7 7 7 7 b b b b f b f f 
@@ -66,20 +107,20 @@ f f b f b f f f f b b f f b f b f b f f c f c f b f f b b b e f
 f b b f b f f f f f b b f e f b f b f f f f c f b f b b f f f f 
 f b f f b b b f 9 f f b f b f b f e b b b b b f b f b f b f f f 
 f b e f b f f f b f f b f b f b f f f f f f b f b b b f b b f f 
-f f b f b b f f b f f f f b f b f b b b c f b f e b f f f b b f 
-f 2 2 f e b b f b f b b b b f b f b f f f f b f b b b b b b b f 
-f 2 2 f b f b f b b b f f f f c f b f e f b b f f f f f f f b f 
+f f b f b b f f b f f f f b f b f b b b c f b f e b f f f b e f 
+f e c f e b b f b f b b b b f b f b f f f f b f b b b b b b b f 
+f c e f b f b f b b b f f f f c f b f e f b b f f f f f f f b f 
 f f f f f f b f f f f f b e b c b c f c f f f f b f b f b b b f 
-f b f f f f b f e c b b b b f f f f f b f 2 2 f b b b b b f f f 
-f b b b b b b f f f f f f b b c b b b b f 2 2 f b f f f b f b f 
-f f b f b f f f f f f f f f f f f f f f f f b f b f f b b f b f 
-f b b f e b b b b b b b b b b b b b b b b f b b b f f e f f b f 
-f f b f f f f f f f f f f f f f b f f f b f f f f f f b f f b f 
-f f b b b b b b b b b f f b b f b f b b b f b b b b b b b f b f 
+f b f f f f b f e c b b b b f f f f f b f e c f b b b b c f f f 
+f b b b b b b f f f f f f b b c b b b b f c e f b f f f b f b f 
+f f b f b f f f f f f f f f f f f f f f f f b f b f f c c f b f 
+f b b f e b b b b b c b b b c b b b b b b f b b b f f e f f b f 
+f f b f f f f f f f f f f f c f b f f f b f f f f f f b f f b f 
+f f b b b b b b b b b f f f b f b f b e b f b b b b b b b f b f 
 f f f f f b f b f f b b f f b f b f b f f f b f f f f f f f b f 
-f b b b f b f b b f f b b f b f b f b b b f b b b b b b b f b f 
+f b b e f b f b b f f b b f b f b f b b b f b b b b b b b f b f 
 f b f f f b f f f f f f b b b f f f f f b f b f f f f b f f b f 
-f b b b b b b b b f b b b f b f b b b b b b b f b b b b b b b f 
+f b b b b b b e b f b b b f b f b b b b b e b f b b b c c c b f 
 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
 `, TileScale.ThirtyTwo)
     scene.setTile(15, img`
@@ -99,121 +140,34 @@ f f f f f f f f f f f f f f f f
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
 f f f f f f f f f f f f f f f f 
-`, true)
-    scene.setTile(4, img`
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-`, false)
-    scene.setTile(7, img`
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-`, false)
-    scene.setTile(6, img`
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
-6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
 `, false)
 }
 function camera () {
-    scene.cameraFollowSprite(turret2)
+    scene.cameraFollowSprite(hero)
 }
-function Ammo () {
-    Ammo2 = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . b b b b b . . 
-. . . . . . . . b b 7 7 7 b b . 
-. . . . . . . b b 7 7 7 7 7 b . 
-. . . . . . b b 7 7 7 7 7 7 b . 
-. . . . . b b 7 7 7 7 7 7 7 b . 
-. . . . . b 7 7 7 7 7 7 7 b b . 
-. . . . . b 7 7 7 7 7 7 b b . . 
-. . . . . b 7 7 7 7 7 b b . . . 
-. . . . . b b 7 7 7 b b . . . . 
-. . . . . . b b b b b . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Food)
-}
-function Gateway () {
-    Gate = sprites.create(img`
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . f f f . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . f f 5 5 5 f f . . . . . . . . . . . . . . . . . 
-. . . . . . . f 5 5 5 f 5 5 5 f . . . . . . . . . . . . . . . . 
-. . . . . . f 5 5 f f . f f 5 5 f . . . . . . . . . . . . . . . 
-. . . . . . f 5 f . . . . . f 5 f . . . . . . . . . . . . . . . 
-. . . . . f 5 5 f . . . . . f 5 5 f f f f f f f f f f f . . . . 
-. . . . . f 5 f . . . . . . . f 5 5 5 5 5 5 5 5 5 5 5 f . . . . 
-. . . . . f 5 5 f . . . . . f 5 5 f f f f 5 f f f 5 f f . . . . 
-. . . . . . f 5 f . . . . . f 5 f . . . f 5 f . f 5 f . . . . . 
-. . . . . . f 5 5 f f . f f 5 5 f . . . f 5 f . f 5 f . . . . . 
-. . . . . . . f 5 5 5 f 5 5 5 f . . . . f f f . f f f . . . . . 
-. . . . . . . . f f 5 5 5 f f . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . f f f . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-`, SpriteKind.Key)
-}
+scene.onOverlapTile(SpriteKind.Player, img`
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+`, function (sprite, location) {
+    game.over(false)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
+    game.over(false)
+})
 function prize () {
     Prize = sprites.create(img`
 . . . . . . . . . . . . . f f f . f f f . . f f f . f f f f . . . . . . . . . . . . . . . . . . 
@@ -267,27 +221,6 @@ function prize () {
 `, SpriteKind.aaa)
     Prize.setPosition(658, 115)
 }
-function turret () {
-    turret2 = sprites.create(img`
-. . . . . . . f . . . . . . . . 
-. . . . . . . f . . . . . . . . 
-. . . . . f f f f f . . . . . . 
-. . . . f a a f a a f . . . . . 
-. . . f a a a f a a a f . . . . 
-. . . f a a a f a a a f . . . . 
-. f f f f f f f f f f f f f . . 
-. . . f a a a f a a a f . . . . 
-. . . f a a a f a a a f . . . . 
-. . . . f a a f a a f . . . . . 
-. . . . . f f f f f . . . . . . 
-. . . . . . . f . . . . . . . . 
-. . . . . . . f . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
-    turret2.setPosition(600, 785)
-}
 function villian1 () {
     villian = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -324,40 +257,34 @@ function villian1 () {
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `, SpriteKind.Enemy)
     villian.setPosition(620, 110)
-    villian.follow(hero, 100)
 }
-let projectile2: Sprite = null
+let projectile: Sprite = null
 let villian: Sprite = null
 let Prize: Sprite = null
-let Gate: Sprite = null
-let Ammo2: Sprite = null
-let turret2: Sprite = null
 let hero: Sprite = null
-turret()
+hero2()
 camera()
 background()
 villian1()
 countdown()
-Ammo()
 prize()
-hero2()
 forever(function () {
-    projectile2 = sprites.createProjectileFromSprite(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . f f f f f . . . . . . 
-. . . . . f 5 a 5 f . . . . . . 
-. . . . . f a 5 a f . . . . . . 
-. . . . . f 5 a 5 f . . . . . . 
-. . . . . f f f f f . . . . . . 
+    projectile = sprites.createProjectileFromSprite(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+. . . . . . . a a a a a a a a . 
+. . . a a a a a 5 5 5 a a a a . 
+. . . 5 5 5 5 5 5 5 5 a a a a . 
+. . . a a a a a 5 5 5 a a a a . 
+. . . . . . . a a a a a a a a . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, turret2, -100, 0)
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, villian, 400, 0)
 })
